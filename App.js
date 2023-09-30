@@ -3,7 +3,14 @@ import Home from "./pages/Home/Home";
 import { s } from "./App.style";
 import { ImageBackground } from "react-native";
 import backgroundImg from "./assets/background.png";
+import AlataRegular from "./assets/fonts/Alata-Regular.ttf";
+import { useFonts } from "expo-font";
+
 export default function App() {
+  const [isFontLoaded] = useFonts({
+    "Alata-Regular": AlataRegular,
+  });
+  console.log(isFontLoaded)
   return (
     <ImageBackground
       source={backgroundImg}
@@ -12,7 +19,7 @@ export default function App() {
     >
       <SafeAreaProvider>
         <SafeAreaView style={s.container}>
-          <Home />
+          {isFontLoaded ? <Home /> : null}
         </SafeAreaView>
       </SafeAreaProvider>
     </ImageBackground>

@@ -6,6 +6,8 @@ import {
 } from "expo-location";
 import { useEffect, useState } from "react";
 import { MeteoApi } from "../../api/meteo";
+import { Txt } from "../../compnents/Txt/Txt";
+import { MeteoBasic } from "../../compnents/MeteoBasic/MeteoBasic";
 
 export default function Home() {
   const [coords, setCoords] = useState();
@@ -40,11 +42,10 @@ export default function Home() {
     setWeather(weatherResponse);
   }
 
-  console.log(weather);
   return (
     <>
       <View style={s.meteo_basic}>
-        <Text>Hello</Text>
+        <MeteoBasic></MeteoBasic>
       </View>
       <View style={s.searchbar}>
         <Text>Hello</Text>

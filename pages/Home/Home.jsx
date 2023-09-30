@@ -9,6 +9,7 @@ import { MeteoApi } from "../../api/meteo";
 import { Txt } from "../../compnents/Txt/Txt";
 import { MeteoBasic } from "../../compnents/MeteoBasic/MeteoBasic";
 import { getWeatherInterpretation } from "../../services/meteo-service";
+import { MeteoAdvanced } from "../../compnents/MeteoAdvanced/MeteoAdvanced";
 
 export default function Home() {
   const [coords, setCoords] = useState();
@@ -61,10 +62,14 @@ export default function Home() {
         />
       </View>
       <View style={s.searchbar}>
-        <Text>Hello</Text>
+        <Text></Text>
       </View>
       <View style={s.meteo_advanced}>
-        <Text>Hello</Text>
+        <MeteoAdvanced
+          wind={currentWeather.windspeed}
+          dusk={weather.daily.sunrise[0].split("T")[1]}
+          down={weather.daily.sunset[0].split("T")[1]}
+        />
       </View>
     </>
   ) : null;

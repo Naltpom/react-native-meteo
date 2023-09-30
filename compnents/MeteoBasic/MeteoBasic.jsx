@@ -1,12 +1,13 @@
 import { Image, View } from "react-native";
 import { s } from "./MeteoBasic.style";
 import { Txt } from "../Txt/Txt";
+import { Clock } from "../Clock/Clock";
 
 export function MeteoBasic({ temperature, city, interpretation }) {
   return (
     <>
       <View style={s.clock}>
-        <Txt>Clock</Txt>
+        <Clock />
       </View>
       <Txt>{city}</Txt>
       <Txt style={s.weather_label}>{interpretation.label}</Txt>

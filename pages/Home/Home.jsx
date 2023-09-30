@@ -5,13 +5,21 @@ import {
   getCurrentPositionAsync,
 } from "expo-location";
 import { useEffect, useState } from "react";
+import { MeteoApi } from "../../api/meteo";
 
 export default function Home() {
-  const [coords, setCoords] = useState([]);
+  const [coords, setCoords] = useState();
+  const [weather, setWeather] = useState();
 
   useEffect(() => {
     getUserLocation();
   }, []);
+
+  useEffect(() => {
+    if (coords) {
+      fetchWeather(coords);
+    }
+  }, [coords]);
 
   async function getUserLocation() {
     let { status } = await requestForegroundPermissionsAsync();
@@ -27,7 +35,12 @@ export default function Home() {
     }
   }
 
-  console.log(coords);
+  async function fetchWeather(coordinates) {
+    const weatherResponse = await MeteoApi.fetchWeatherFromCoords(coordinates);
+    setWeather(weatherResponse);
+  }
+
+  console.log(weather);
   return (
     <>
       <View style={s.meteo_basic}>

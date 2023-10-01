@@ -15,14 +15,16 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.naltpom.reactnativemeteo"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "softwareKeyboardLayoutMode": "pan"
+      "softwareKeyboardLayoutMode": "pan",
+      "package": "com.naltpom.reactnativemeteo"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -32,6 +34,12 @@
         "projectId": "976252a6-cace-467a-b016-3cefea966473"
       }
     },
-    "owner": "naltpom"
+    "owner": "naltpom",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/976252a6-cace-467a-b016-3cefea966473"
+    }
   }
 }

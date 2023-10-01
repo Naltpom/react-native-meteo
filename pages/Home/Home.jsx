@@ -10,12 +10,15 @@ import { Txt } from "../../compnents/Txt/Txt";
 import { MeteoBasic } from "../../compnents/MeteoBasic/MeteoBasic";
 import { getWeatherInterpretation } from "../../services/meteo-service";
 import { MeteoAdvanced } from "../../compnents/MeteoAdvanced/MeteoAdvanced";
+import { useNavigation } from "@react-navigation/native";
+import { Container } from "../../compnents/Container/Container";
 
 export default function Home() {
   const [coords, setCoords] = useState();
   const [weather, setWeather] = useState();
   const [city, setCity] = useState();
   const currentWeather = weather?.current_weather;
+  const nav = useNavigation();
 
   useEffect(() => {
     getUserLocation();
@@ -52,13 +55,18 @@ export default function Home() {
     setCity(cityResponse);
   }
 
+  function goToForcastPage() {
+    nav.navigate("Forecast", { city, ...weather.daily });
+  }
+
   return currentWeather ? (
-    <>
+    <Container>
       <View style={s.meteo_basic}>
         <MeteoBasic
           temperature={Math.round(currentWeather?.temperature)}
           city={city}
           interpretation={getWeatherInterpretation(currentWeather.weathercode)}
+          onPress={goToForcastPage}
         />
       </View>
       <View style={s.searchbar}>
@@ -71,6 +79,6 @@ export default function Home() {
           down={weather.daily.sunset[0].split("T")[1]}
         />
       </View>
-    </>
+    </Container>
   ) : null;
 }

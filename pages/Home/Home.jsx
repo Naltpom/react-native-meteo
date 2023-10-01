@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Alert, Text, View } from "react-native";
 import { s } from "./Home.style";
 import {
   requestForegroundPermissionsAsync,
@@ -12,6 +12,7 @@ import { getWeatherInterpretation } from "../../services/meteo-service";
 import { MeteoAdvanced } from "../../components/MeteoAdvanced/MeteoAdvanced";
 import { useNavigation } from "@react-navigation/native";
 import { Container } from "../../components/Container/Container";
+import { Searchbar } from "../../components/Searchbar/Searchbar";
 
 export default function Home() {
   const [coords, setCoords] = useState();
@@ -54,6 +55,14 @@ export default function Home() {
     const cityResponse = await MeteoApi.fetchCityFromCoords(coordinates);
     setCity(cityResponse);
   }
+  async function fetchCoordsByCity(city) {
+    try {
+      const coordsResponse = await MeteoApi.fetchCoordsFromCity(city);
+      setCoords(coordsResponse);
+    } catch (error) {
+      Alert.alert("Oups !", error);      
+    }
+  }
 
   function goToForcastPage() {
     nav.navigate("Forecast", { city, ...weather.daily });
@@ -70,7 +79,7 @@ export default function Home() {
         />
       </View>
       <View style={s.searchbar}>
-        <Text></Text>
+        <Searchbar onSubmit={fetchCoordsByCity}/>
       </View>
       <View style={s.meteo_advanced}>
         <MeteoAdvanced

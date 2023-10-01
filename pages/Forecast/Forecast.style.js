@@ -15,4 +15,7 @@ export const s = StyleSheet.create({
   subtitle: {
     fontSize: 20,
   },
+  forcast_list: {
+    marginTop: 50,
+  },
 });

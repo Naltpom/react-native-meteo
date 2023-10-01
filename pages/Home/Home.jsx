@@ -6,12 +6,12 @@ import {
 } from "expo-location";
 import { useEffect, useState } from "react";
 import { MeteoApi } from "../../api/meteo";
-import { Txt } from "../../compnents/Txt/Txt";
-import { MeteoBasic } from "../../compnents/MeteoBasic/MeteoBasic";
+import { Txt } from "../../components/Txt/Txt";
+import { MeteoBasic } from "../../components/MeteoBasic/MeteoBasic";
 import { getWeatherInterpretation } from "../../services/meteo-service";
-import { MeteoAdvanced } from "../../compnents/MeteoAdvanced/MeteoAdvanced";
+import { MeteoAdvanced } from "../../components/MeteoAdvanced/MeteoAdvanced";
 import { useNavigation } from "@react-navigation/native";
-import { Container } from "../../compnents/Container/Container";
+import { Container } from "../../components/Container/Container";
 
 export default function Home() {
   const [coords, setCoords] = useState();
